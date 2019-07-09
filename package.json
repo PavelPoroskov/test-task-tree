@@ -1,0 +1,39 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "Test task Properties Tree",
+  "main": "src/index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development --open",
+    "build": "webpack --config ./webpack.config.js --mode production"
+  },
+  "author": "Pavel Poroskov",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router": "^5.0.1",
+    "redux": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime": "^7.5.2",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "eslint": "^5.3.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
+    "url-loader": "^2.0.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
