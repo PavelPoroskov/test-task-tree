@@ -1,6 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 
 import store from '../8-store';
 
@@ -11,8 +16,11 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Route exact path="/" component={ViewScreen} />
-        <Route path="/edit" component={EditScreen} />
+        <Switch>
+          <Route exact path="/" component={ViewScreen} />
+          <Route exact path="/edit" component={EditScreen} />
+          <Route component={() => <Redirect to="/" />} />
+        </Switch>
       </Router>
     </Provider>
   );

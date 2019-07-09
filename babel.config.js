@@ -15,6 +15,8 @@ module.exports = function config(api) {
     // 'react-app'
   ];
   const plugins = [
+    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: 'css' }], // `style: true` for less
+    // ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }],
     // ['@babel/plugin-proposal-decorators', { legacy: true }],
     // ['@babel/plugin-proposal-class-properties', { loose: true }]
   ];
