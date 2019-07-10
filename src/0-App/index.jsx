@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={ViewScreen} />
-          <Route exact path="/edit" component={EditScreen} />
+          <Route exact path="/edit/:id" component={EditScreen} />
           <Route component={() => <Redirect to="/" />} />
         </Switch>
       </Router>
