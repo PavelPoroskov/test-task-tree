@@ -46,7 +46,12 @@ module.exports = (webpackEnv, options) => {
   // const publicPath = isEnvProduction
   //   ? paths.servedPath
   //   : isEnvDevelopment && '/';
-  const publicPath = './';
+  const publicPath = isEnvProduction
+    ? '/test-task-tree/'
+    : isEnvDevelopment && '/';
+
+  // const publicPath = './';
+
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
   const shouldUseRelativeAssetPaths = publicPath === './';
@@ -109,7 +114,8 @@ module.exports = (webpackEnv, options) => {
     output: {
       filename: 'bundle.js',
       path: path.resolve(appDirectory, 'build'),
-      publicPath: '/',
+      // publicPath: '/',
+      publicPath,
     },
     devServer: {
       contentBase: './build',
