@@ -113,6 +113,7 @@ module.exports = (webpackEnv, options) => {
     },
     devServer: {
       contentBase: './build',
+      historyApiFallback: true,
     },
 
     module: {

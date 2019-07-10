@@ -56,7 +56,7 @@ class TableView extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.columns = getColumns(props.onEditRow);
+    this.columns = getColumns(props.onEditObject);
   }
 
   render() {
@@ -66,7 +66,7 @@ class TableView extends React.PureComponent {
 }
 TableView.propTypes = {
   objectsList: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onEditRow: PropTypes.func.isRequired,
+  onEditObject: PropTypes.func.isRequired,
 };
 
 export default TableView;

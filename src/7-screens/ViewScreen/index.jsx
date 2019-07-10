@@ -1,26 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TableConnected from './TableConnected';
+import ViewScreenConnected from './ViewScreenConnected';
 
 class ViewScreen extends React.PureComponent {
-  onEditRow = (id) => {
-    if (!id) {
-      return;
-    }
+  onEditObject = () => {
+  // onEditObject = (id) => {
+    // if (!id) {
+    //   return;
+    // }
     const { history } = this.props;
     history.push({
-      pathname: `/edit/${id}`,
+      // pathname: `/edit/${id}`,
+      pathname: '/edit',
     });
   };
 
   render() {
-    return (
-      <div>
-        <h1>Property List</h1>
-        <TableConnected onEditRow={this.onEditRow} />
-      </div>
-    );
+    return <ViewScreenConnected onEditObject={this.onEditObject} />;
   }
 }
 ViewScreen.propTypes = {

@@ -9,8 +9,8 @@ import {
 
 import store from '../8-store';
 
-import ViewScreen from '../7-screens/View';
-import EditScreen from '../7-screens/Edit';
+import ViewScreen from '../7-screens/ViewScreen';
+import EditScreen from '../7-screens/EditScreen';
 
 function App() {
   return (
@@ -18,7 +18,10 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={ViewScreen} />
+          {/* }
           <Route exact path="/edit/:id" component={EditScreen} />
+          { */}
+          <Route exact path="/edit" component={EditScreen} />
           <Route component={() => <Redirect to="/" />} />
         </Switch>
       </Router>

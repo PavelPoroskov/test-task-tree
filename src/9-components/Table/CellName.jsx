@@ -12,7 +12,7 @@ function CellName({ id, name, onClick }) {
   );
 }
 CellName.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
 };
