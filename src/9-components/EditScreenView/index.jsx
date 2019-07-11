@@ -65,8 +65,12 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
   },
+  controlsBtn: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'center',
+  },
 };
-
 
 class EditScreenView extends React.PureComponent {
   constructor(props) {
@@ -117,10 +121,14 @@ class EditScreenView extends React.PureComponent {
               <TableEdit objectsList={list} />
             </div>
             <div style={styles.controls}>
-              <Button onClick={onCancel}>Cancel</Button>
-              <Button type="primary" onClick={this.onSaveForm}>
-                Save
-              </Button>
+              <div style={styles.controlsBtn}>
+                <Button onClick={onCancel}>Cancel</Button>
+              </div>
+              <div style={styles.controlsBtn}>
+                <Button type="primary" onClick={this.onSaveForm}>
+                  Save
+                </Button>
+              </div>
             </div>
           </div>
         </div>
