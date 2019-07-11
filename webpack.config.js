@@ -43,6 +43,10 @@ module.exports = (webpackEnv, options) => {
   const isEnvDevelopment = options.mode === 'development';
   const isEnvProduction = options.mode === 'production';
 
+  const envKeys = Object.keys(webpackEnv || {}).reduce((acc, next) => {
+    acc[`process.env.${next}`] = JSON.stringify(webpackEnv[next]);
+    return acc;
+  }, {});
   // const publicPath = isEnvProduction
   //   ? paths.servedPath
   //   : isEnvDevelopment && '/';
@@ -166,11 +170,8 @@ module.exports = (webpackEnv, options) => {
         ),
       ),
 
-      new webpack.DefinePlugin({
-        __DEV__: options.mode === 'development',
-        NODE_ENV: options.mode,
-        BABEL_ENV: options.mode,
-      }),
+      new webpack.DefinePlugin(envKeys),
+
       isEnvProduction
       && new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output

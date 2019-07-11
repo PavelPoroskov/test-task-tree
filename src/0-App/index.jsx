@@ -12,10 +12,14 @@ import store from '../8-store';
 import ViewScreen from '../7-screens/ViewScreen';
 import EditScreen from '../7-screens/EditScreen';
 
+// console.log('App');
+// console.log(process.env.BASELINE);
+const basename = process.env.BASELINE || '';
+
 function App() {
   return (
     <Provider store={store}>
-      <Router>
+      <Router basename={basename}>
         <Switch>
           <Route exact path="/" component={ViewScreen} />
           {/* }
