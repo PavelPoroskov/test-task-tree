@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Table from '../Table';
 
 function ViewScreenView({ objectsList, onEditObject }) {
+  // console.log('ViewScreenView');
+  // console.log(objectsList);
   return (
     <div>
       <h1>Objects</h1>

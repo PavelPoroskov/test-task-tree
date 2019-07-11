@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Redirect } from 'react-router-dom';
 import EditScreenConnected from './EditScreenConnected';
 
 class EditScreen extends React.PureComponent {
@@ -12,17 +12,22 @@ class EditScreen extends React.PureComponent {
   };
 
   render() {
-    // const { match: { params: { id } } } = this.props;
-    // return <EditScreenConnected id={id} onClose={this.onClose} />;
-    return <EditScreenConnected onClose={this.onClose} />;
+    // console.log('EditScreen');
+    // console.log(this.props);
+    const { location: { state: { id } } } = this.props;
+    if (!id) {
+      return <Redirect to="/" />;
+    }
+    // console.log(id);
+    return <EditScreenConnected id={id} onClose={this.onClose} />;
   }
 }
 EditScreen.propTypes = {
-  // match: PropTypes.shape({
-  //   params: PropTypes.shape({
-  //     id: PropTypes.string.isRequired,
-  //   }).isRequired,
-  // }).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { selectNodes } from '../../8-store/selectedNodes/actions';
+// import { selectNodes } from '../../8-store/selectedNodes/actions';
 import { objectsListSelector } from '../../8-store/selectors';
 
 import ViewScreenView from '../../9-components/ViewScreenView';
@@ -10,16 +10,16 @@ function mapStateToProps(state) {
     objectsList: objectsListSelector(state),
   };
 }
-function mapDispatchToProps(dispatch, ownProps) {
-  return {
-    onEditObject: (id) => {
-      if (!id) {
-        return;
-      }
-      dispatch(selectNodes([id]));
-      ownProps.onEditObject(id);
-    },
-  };
-}
+// function mapDispatchToProps(dispatch, ownProps) {
+//   return {
+//     onEditObject: (id) => {
+//       if (!id) {
+//         return;
+//       }
+//       dispatch(selectNodes([id]));
+//       ownProps.onEditObject(id);
+//     },
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViewScreenView);
+export default connect(mapStateToProps)(ViewScreenView);

@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 
 import { updateObjects } from '../../8-store/objectsById/actions';
-import { objectsTreeSelector } from '../../8-store/selectors';
+import { objectsByIdSelector } from '../../8-store/selectors';
 
 import EditScreenView from '../../9-components/EditScreenView';
 
 
 function mapStateToProps(state) {
   return {
-    objectsTree: objectsTreeSelector(state),
-    // selectedObjects:
+    // objectsTree: objectsTreeSelector(state),
+    objectsById: objectsByIdSelector(state),
   };
 }
 function mapDispatchToProps(dispatch, ownProps) {

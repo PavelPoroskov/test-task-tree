@@ -4,15 +4,18 @@ import PropTypes from 'prop-types';
 import ViewScreenConnected from './ViewScreenConnected';
 
 class ViewScreen extends React.PureComponent {
-  onEditObject = () => {
-  // onEditObject = (id) => {
-    // if (!id) {
-    //   return;
-    // }
+  // onEditObject = () => {
+  onEditObject = (id) => {
+    if (!id) {
+      return;
+    }
     const { history } = this.props;
     history.push({
       // pathname: `/edit/${id}`,
       pathname: '/edit',
+      state: {
+        id,
+      },
     });
   };
 

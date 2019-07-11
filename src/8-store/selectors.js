@@ -25,16 +25,8 @@ const objectsListSelector = createSelector(
   },
 );
 
-const objectsTreeSelector = createSelector(
-  objectsByIdSelector,
-  (objectsById) => {
-    const list = Object.keys(objectsById).map(key => objectsById[key]);
-
-    return list;
-  },
-);
-
 export {
+  objectsByIdSelector,
   objectsListSelector,
-  objectsTreeSelector,
+  // objectsTreeSelector,
 };
