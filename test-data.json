@@ -1,0 +1,110 @@
+[
+  { 
+    "parentId": null,
+    "group": true,
+    "id": 1, 
+    "name": "Домашние питомцы",
+    "condition": true,
+    "email": "test1@gmail.com",
+    "addresses": ["test1@mail.ru", "test1@yandex.ru"]
+  },
+  { 
+    "parentId": 1,
+    "group": true,
+    "id": 2, 
+    "name": "Кошки"
+  },
+  { 
+    "parentId": 1,
+    "group": true,
+    "id": 3, 
+    "name": "Собаки"
+  },
+  { 
+    "parentId": null,
+    "group": true,
+    "id": 4, 
+    "name": "Хищники"
+  },
+  { 
+    "parentId": 2,
+    "group": false,
+    "id": 5, 
+    "name": "Кошка 3-колор",
+    "condition": true,
+    "email": "cat3@gmail.com",
+    "addresses": ["cat1.job@mail.ru", "cat1.night@yandex.ru"]
+  },
+  { 
+    "parentId": 2,
+    "group": false,
+    "id": 6, 
+    "name": "Кот полосатый",
+    "condition": true,
+    "email": "cat.stripe@gmail.com",
+    "addresses": ["cat.stripe.job@mail.ru", "cat.stripe.night@yandex.ru"]
+  },
+  { 
+    "parentId": 2,
+    "group": false,
+    "id": 7, 
+    "name": "Кот рыжий",
+    "condition": true,
+    "email": "ginger.cat@gmail.com",
+    "addresses": ["ginger.cat.job@mail.ru", "ginger.cat.night@yandex.ru"]
+  },
+  { 
+    "parentId": 3,
+    "group": false,
+    "id": 8, 
+    "name": "Джек-рассел-терьер",
+    "condition": true,
+    "email": "terrier.r@gmail.com",
+    "addresses": ["terrier.r.job@mail.ru", "terrier.r.night@yandex.ru"]
+  },
+  { 
+    "parentId": 3,
+    "group": false,
+    "id": 9, 
+    "name": "Вест-хайленд-уайт-терьер",
+    "condition": true,
+    "email": "terrier.wh@gmail.com",
+    "addresses": ["terrier.wh.job@mail.ru", "terrier.wh.night@yandex.ru"]
+  },
+  { 
+    "parentId": 1,
+    "group": false,
+    "id": 10, 
+    "name": "Морская свинка",
+    "condition": false,
+    "email": "gpig@gmail.com",
+    "addresses": ["gpig.job@mail.ru", "gpig.night@yandex.ru"]
+  },
+  { 
+    "parentId": 1,
+    "group": false,
+    "id": 11, 
+    "name": "Черепаха",
+    "condition": false,
+    "email": "turtle@gmail.com",
+    "addresses": ["turtle.job@mail.ru", "turtle.night@yandex.ru"]
+  },
+  { 
+    "parentId": 4,
+    "group": false,
+    "id": 12, 
+    "name": "Еж",
+    "condition": false,
+    "email": "hhog@gmail.com",
+    "addresses": ["hhog.job@mail.ru", "hhog.night@yandex.ru"]
+  },
+  { 
+    "parentId": 4,
+    "group": false,
+    "id": 13, 
+    "name": "Хорек",
+    "condition": false,
+    "email": "ferret@gmail.com",
+    "addresses": ["ferret.job@mail.ru", "ferret.night@yandex.ru"]
+  }
+]
