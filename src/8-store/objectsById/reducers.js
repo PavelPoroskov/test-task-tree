@@ -34,8 +34,12 @@ function reducer(state = initialData, action) {
     }
     case UPDATE_OBJECTS: {
       const { list } = action.payload;
+
       const updatedObjById = list.reduce((acc, el) => {
-        acc[el.id] = el;
+        acc[el.id] = {
+          ...state[el.id], // parentId, group
+          ...el,
+        };
         return acc;
       }, {});
       return {

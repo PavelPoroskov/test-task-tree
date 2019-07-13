@@ -12,9 +12,9 @@ class EditScreen extends React.PureComponent {
   };
 
   render() {
-    // console.log('EditScreen');
-    // console.log(this.props);
     const { location: { state: { id } } } = this.props;
+    // console.log('EditScreen');
+    // console.log(history);
     if (!id) {
       return <Redirect to="/" />;
     }

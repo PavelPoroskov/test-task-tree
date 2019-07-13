@@ -47,7 +47,7 @@ const getColumns = () => {
   return columns;
 };
 
-class TableView extends React.PureComponent {
+class TableEdit extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -56,12 +56,14 @@ class TableView extends React.PureComponent {
 
   render() {
     const { objectsList } = this.props;
+    // console.log('TableEdit');
+    // console.log(objectsList);
     return <Table dataSource={objectsList} columns={this.columns} rowKey="id" />;
   }
 }
-TableView.propTypes = {
+TableEdit.propTypes = {
   objectsList: PropTypes.arrayOf(PropTypes.object).isRequired,
   // onEditObject: PropTypes.func.isRequired,
 };
 
-export default TableView;
+export default TableEdit;

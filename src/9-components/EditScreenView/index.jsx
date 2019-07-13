@@ -1,55 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { cloneDeep } from 'lodash-es';
 import { Button } from 'antd';
-import Tree from '../Tree';
+
+import TreeCustomized from '../TreeCustomized';
 import TableEdit from '../TableEdit';
-
-function compareByKey(key) {
-  return function compare(o1, o2) {
-    if (o1[key] < o2[key]) {
-      return -1;
-    }
-    if (o1[key] > o2[key]) {
-      return 1;
-    }
-    return 0;
-  };
-}
-
-function getAllChildren(arIds, objectsById) {
-  if (!arIds) {
-    return [];
-  }
-  if (Array.isArray(arIds) && arIds.length === 0) {
-    return [];
-  }
-
-  const res = arIds.map(id => Object.assign({}, objectsById[id]));
-  res.sort(compareByKey('name'));
-  for (let i = 0; i < arIds.length; i += 1) {
-    const obj = res[i];
-    obj.childrenObjs = getAllChildren(obj.children, objectsById);
-  }
-
-  return res;
-}
-
-const getTree = (objectsById) => {
-  const list = Object.keys(objectsById).map(key => objectsById[key]);
-  let listRoot = list.filter(el => !el.parentId);
-
-  listRoot.sort(compareByKey('name'));
-  listRoot = listRoot.map(item => Object.assign({}, item));
-  for (let i = 0; i < listRoot.length; i += 1) {
-    listRoot[i].childrenObjs = getAllChildren(
-      listRoot[i].children,
-      objectsById,
-    );
-  }
-
-  return listRoot;
-};
+import { sortBy } from '../../10-api';
 
 const styles = {
   leftright: {
@@ -75,45 +31,90 @@ const styles = {
 class EditScreenView extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { id, objectsById } = this.props;
-    // console.log('before');
-    // console.log(objectsById);
-    let selectedNodes = [];
-    let list = [];
-    this.objectsTree = [];
-    if (Object.keys(objectsById).length > 0) {
-      this.objectsTree = getTree(objectsById);
 
-      selectedNodes = id ? [id] : [];
-      list = id ? [objectsById[id]] : [];
+    const { id, objectsById } = props;
+
+    // const selectedIds = [`${id}`];
+    // todo: check this in upper containers
+    let selectedIds = [];
+    if (id && Object.keys(objectsById).length > 0 && objectsById[id]) {
+      selectedIds = [`${id}`];
     }
-    // console.log('after');
+
+    // this.dataSource = cloneDeep(objectsById);
+    this.dataSource = objectsById;
+    this.dataEditing = {};
+    // this.dataList = [];
     this.state = {
-      selectedNodes,
-      list,
+      // selectedIds,
+      list: this.getList(selectedIds),
     };
-    if (!(Object.keys(objectsById).length > 0) || !id) {
+    // todo: check this in upper containers
+    if (!(id && Object.keys(objectsById).length > 0 && objectsById[id])) {
       props.onCancel();
     }
   }
 
+  getList = (_selectedIds) => {
+    // key in this.dataSource -- only items/ not groups
+    const listFiltered = _selectedIds.filter(key => key in this.dataSource);
+
+    const arKeys = Object.keys(this.dataEditing);
+    for (let i = 0; i < arKeys.length; i += 1) {
+      const key = arKeys[i];
+      if (listFiltered.indexOf(key) === -1) {
+        // console.log(`delete ${key}`);
+        delete this.dataEditing[key];
+      }
+    }
+
+    for (let i = 0; i < listFiltered.length; i += 1) {
+      const key = listFiltered[i];
+      // if (arKeys.indexOf(key) === -1 && (key in this.dataSource)) {
+      if (!(key in this.dataEditing)) {
+        // console.log(`add ${key}`);
+        this.dataEditing[key] = cloneDeep(this.dataSource[key]);
+      }
+    }
+
+    const list = listFiltered.map(id => this.dataEditing[id]);
+    list.sort(sortBy('name'));
+
+    return list;
+  }
+
+  onSelect = (changedList) => {
+    const list = this.getList(changedList);
+    this.setState({
+      list,
+    });
+  }
+
   onSaveForm = () => {
     const { onSave } = this.props;
+    // todo: validation if in editing
     const { list } = this.state;
     onSave(list);
   };
 
   render() {
-    const { onCancel } = this.props;
-    const { list, selectedNodes } = this.state;
+    const { id, objectsTree, onCancel } = this.props;
+    const { list } = this.state;
+
+    // todo: check this in upper containers
+    if (!objectsTree.length) {
+      return null;
+    }
+
     return (
       <div>
         <h1>Editing Objects</h1>
         <div style={styles.leftright}>
           <div style={styles.left}>
-            <Tree
-              objectsTree={this.objectsTree}
-              selectedNodes={selectedNodes}
+            <TreeCustomized
+              objectsTree={objectsTree}
+              id={id}
+              onSelect={this.onSelect}
             />
           </div>
           <div style={styles.right}>
@@ -139,6 +140,7 @@ class EditScreenView extends React.PureComponent {
 EditScreenView.propTypes = {
   id: PropTypes.string.isRequired,
   objectsById: PropTypes.shape().isRequired,
+  objectsTree: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
