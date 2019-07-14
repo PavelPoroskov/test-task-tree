@@ -1,0 +1,10 @@
+page "/edit" after page "/"
+solution
+  state.lastWindow
+    onClose page "/" set state.lastWindow
+  <RouteIf path="/edit" />
+    if state.lastWindow=="/" {
+      return Component
+    }else{
+      return Redirect to = "/"
+    }
